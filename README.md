@@ -2,6 +2,12 @@
 
 put local ollama models in your iMessage group chats.
 
+
+
+https://github.com/user-attachments/assets/752d8f0c-bd56-404a-8e72-c333a70b2c3d
+
+
+
 pick one or more models, pick a chat, and liltext watches it. say a model's name in a message and it replies in the chat, sent from your account.
 
 # goals
