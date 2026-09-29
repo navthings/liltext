@@ -40,6 +40,10 @@ class Daemon:
                     self.tick()
                 except MessagesError as exc:
                     LOG.error("Messages: %s", exc)
+                    LOG.error(
+                        "ACTION REQUIRED: Open System Settings > Privacy & Security > "
+                        "Full Disk Access and enable the Python executable running liltext."
+                    )
                     self._reconnect()
                 except Exception:
                     LOG.exception("unexpected daemon error")
