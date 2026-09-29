@@ -102,14 +102,34 @@ def show_models() -> None:
 
 def show_status() -> None:
     configs = load_config()
+
     print(f"\n{B}liltext{R}  {D}local Messages ↔ Ollama bridge{R}")
-    print(f"  chats     {len(configs)} configured / {sum(c.enabled for c in configs.values())} enabled")
-    print(f"  service   {G}running{R}" if service_status() != "not running" else f"  service   {D}not running{R}")
+    print(
+        f"  chats     {len(configs)} configured / "
+        f"{sum(c.enabled for c in configs.values())} enabled"
+    )
+
+    service = service_status()
+    print(
+        f"  service   {G}running{R}"
+        if service != "not running"
+        else f"  service   {D}not running{R}"
+    )
+
+    try:
+        db = connect()
+        db.close()
+        print(f"  health    {G}healthy{R}")
+        print(f"  Messages  {G}accessible{R}")
+    except MessagesError as exc:
+        print(f"  health    {Y}error{R}")
+        print(f"  Messages  {Y}inaccessible{R}")
+        print(f"  error     {exc}")
+
     from .config import CONFIG_PATH
     print(f"  config    {CONFIG_PATH}")
     print(f"  state     {STATE_PATH}")
     print(f"  logs      {LOG_PATH}")
-
 
 def show_logs(follow: bool) -> None:
     if not LOG_PATH.exists():
