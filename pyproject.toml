@@ -1,0 +1,10 @@
+[project]
+name = "liltext"
+version = "2.0.0"
+description = "Local Ollama bots for macOS Messages"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+liltext = "liltext.cli:main"
+liltextd = "liltext.daemon:main"
